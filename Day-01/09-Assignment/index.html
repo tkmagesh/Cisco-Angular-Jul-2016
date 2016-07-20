@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Math Calculator</title>
+	<style>
+		.result{
+			font-size: 22pt;
+
+		}
+		
+	</style>
+</head>
+<script>
+	function MathCalculator(){
+		this.number1 = 0;
+		this.number2 = 0;
+		this.result = 0;
+	}
+	MathCalculator.prototype.add = function(){
+		this.result = this.number1 + this.number2;
+	}
+	MathCalculator.prototype.subtract = function(){
+		this.result = this.number1  - this.number2;
+	}
+	MathCalculator.prototype.multiply = function(){
+		this.result = this.number1 * this.number2;
+	}
+	MathCalculator.prototype.divide = function(){
+		this.result = this.number1 / this.number2;
+	}
+
+</script>
+<body>
+	<h1>Math Calculator</h1>
+	<hr>
+	<div id="calculator1">
+		<input type="number">
+		<input type="number">
+		<input type="button" value="Add">
+		<input type="button" value="Subtract">
+		<input type="button" value="Multiply">
+		<input type="button" value="Divide">
+		<div class="result">[Result]</div>
+	</div>
+	<hr>
+	<div id="calculator2">
+		<input type="number" >
+		<select >
+			<option value="add">Add</option>
+			<option value="subtract">Subtract</option>
+			<option value="Multiply">Multiply</option>
+			<option value="Divide">divide</option>
+		</select>
+		<input type="number" >
+		<input type="button" value="Calculate">
+		<div class="result">[Result]</div>
+	</div>
+</body>
+</html>
