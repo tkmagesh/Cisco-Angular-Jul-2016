@@ -41,21 +41,24 @@
 				if (_data[attrName] === value) return;
 				_data[attrName] = value;
 				//trigger change notification for 'attrName'
-				var subscriptionFn = _eventHandlers[attrName];
-				if (typeof subscriptionFn === 'function')
-					subscriptionFn();
+				var subscriptionFns = _eventHandlers[attrName];
+				subscriptionFns.forEach(function(subscriptionFn){
+					if (typeof subscriptionFn === 'function')
+						subscriptionFn();
+				})
+				
 			};
 
 			var _eventHandlers = {
-				basic : null,
-				hra : null,
-				da : null,
-				tax : null,
-				salary : null
+				basic : [],
+				hra : [],
+				da : [],
+				tax : [],
+				salary : []
 			};
 
 			this.watch = function(attrName, subscriptionFn){
-				_eventHandlers[attrName] = subscriptionFn;
+				_eventHandlers[attrName].push(subscriptionFn);
 			};
 		}
 		SalaryCalculator.prototype.calculate = function(){
