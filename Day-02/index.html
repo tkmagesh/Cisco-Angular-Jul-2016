@@ -77,8 +77,9 @@
 		$scope.toggleBug = function(bug){
 			bug.isClosed = !bug.isClosed;
 		};
-
-		$scope.selectedBug = $scope.bugs[0];
+		$scope.setSelectedBug = function(bug){
+			$scope.selectedBug = bug;
+		};
 	})
 
 	</script>
@@ -114,8 +115,9 @@
 		<section class="list">
 			<ol>
 				<li ng-repeat="bug in bugs track by $index">
-					<span class="bugname" ng-click="toggleBug(bug)">{{bug}}</span>
-					<input type="button" value="Select" ng-click="selectedBug = bug">
+					<span class="bugname" ng-click="toggleBug(bug)" ng-class="{closed : bug.isClosed}">
+						{{bug.name}}</span>
+					<input type="button" value="Select" ng-click="setSelectedBug(bug)">
 				</li>
 			</ol>
 			<input type="button" value="Remove Closed">
