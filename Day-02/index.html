@@ -33,6 +33,14 @@
 		.bugname{
 			cursor: pointer;
 		}
+		.selected{
+			position: absolute;
+			bottom: 0px;
+			right : 0px;
+			margin : 10px;
+			border : 1px solid black;
+			padding: 10px;
+		}
 
 	</style>
 	<script>
@@ -51,15 +59,39 @@
 		12. Make the bugs accessible using an URL
 		*/
 	</script>
+	<script src="angular.js"></script>
+	<script>
+	var bugTrackerApp = angular.module('bugTrackerApp', []);
+	bugTrackerApp.controller('bugsController', function($scope){
+		$scope.bugs = [
+			{ name : 'Unable to write to the local storage', isClosed : false},
+			{ name : 'User actions not recognized', isClosed : true},
+			{ name : 'Server communication failure', isClosed : false},
+
+		];
+
+		$scope.addBug = function(newBug){
+			$scope.bugs.push(newBug);
+		};
+
+		$scope.toggleBug = function(bug){
+			bug.isClosed = !bug.isClosed;
+		};
+
+		$scope.selectedBug = $scope.bugs[0];
+	})
+
+	</script>
 </head>
-<body>
+<body ng-app="bugTrackerApp">
 	<h1>Bug Tracker</h1>
 	<hr>
-	<div class="content">
+	<div class="content" ng-controller="bugsController">
+		
 		<section class="stats">
 			<span class="closed">3</span>
 			<span> / </span>
-			<span>5</span>
+			<span>{{bugs.length}}</span>
 		</section>
 		<section class="search">
 			<label for="">Search : </label>
@@ -76,15 +108,20 @@
 		</section>
 		<section class="edit">
 			<label for="">Bug :</label>
-			<input type="text" name="" id="">
-			<input type="button" value="Save">
+			<input type="text" ng-model="newBugName">
+			<input type="button" value="Save" ng-click="addBug(newBugName)">
 		</section>
 		<section class="list">
 			<ol>
-				<li><span class="bugname">Unable to write to the local storage</span></li>
-				<li><span class="bugname closed">User actions not recognized</li>
+				<li ng-repeat="bug in bugs track by $index">
+					<span class="bugname" ng-click="toggleBug(bug)">{{bug}}</span>
+					<input type="button" value="Select" ng-click="selectedBug = bug">
+				</li>
 			</ol>
 			<input type="button" value="Remove Closed">
+		</section>
+		<section class="selected">
+			<h3>{{selectedBug.name}}</h3>
 		</section>
 	</div>
 </body>
