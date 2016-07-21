@@ -40,10 +40,7 @@
 		})
 		.controller('calculatorController2', function($scope){
 			$scope.calculator = new MathCalculator();
-			//$scope.operation = '';
-			$scope.calculate = function(){
-				$scope.calculator[$scope.operation]();
-			}
+			
 		})
 
 </script>
@@ -64,7 +61,7 @@
 		<input type="number" ng-model="calculator.number1">
 		<input type="number" ng-model="calculator.number2">
 
-		<select ng-model="operation" ng-change="calculate()">
+		<select ng-model="operation" ng-change="calculator[operation]()">
 			<option value="add">Add</option>
 			<option value="subtract">Subtract</option>
 			<option value="multiply">Multiply</option>
