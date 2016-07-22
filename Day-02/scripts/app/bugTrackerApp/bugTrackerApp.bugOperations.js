@@ -1,10 +1,9 @@
 angular.module('bugTrackerApp')
 		.factory('bugOperations' , function(defaultBugName){
-		var maxBugId = 0;
 		return {
-			create : function(bugName){
+			create : function(id, bugName){
 				return {
-					id : ++maxBugId,
+					id : id,
 					name : bugName || defaultBugName,
 					isClosed : false
 				}

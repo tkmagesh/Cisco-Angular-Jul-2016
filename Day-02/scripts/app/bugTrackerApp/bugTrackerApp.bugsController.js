@@ -1,19 +1,15 @@
 angular.module('bugTrackerApp')
-		.controller('bugsController', function($scope, bugOperations){
-		$scope.bugs = [
-			bugOperations.create('Unable to write to the local storage'),
-			bugOperations.create('User actions not recognized'),
-			bugOperations.create('Server communication failure'),
-
-		];
+		.controller('bugsController', function($scope, bugStorage){
+			//console.log(bugStorage);
+		$scope.bugs = bugStorage.getAll()
 
 		$scope.addBug = function(newBugName){
-			var newBug = bugOperations.create(newBugName);
+			var newBug = bugStorage.add(newBugName);
 			$scope.bugs.push(newBug);
 		};
 
 		$scope.toggleBug = function(bug){
-			bugOperations.toggle(bug);
+			bugStorage.toggle(bug);
 		};
 		$scope.setSelectedBug = function(bug){
 			$scope.selectedBug = bug;
@@ -21,8 +17,10 @@ angular.module('bugTrackerApp')
 
 		$scope.removeClosed = function(){
 			for(var i=$scope.bugs.length-1; i>=0; i--)
-				if ($scope.bugs[i].isClosed)
+				if ($scope.bugs[i].isClosed){
+					bugStorage.remove($scope.bugs[i]);
 					$scope.bugs.splice(i,1);
+				}
 		};
 
 	});
