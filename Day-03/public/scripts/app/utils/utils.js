@@ -5,7 +5,8 @@ utils.value('defaultTrimLength', 20);
 utils.filter('trimText', function(defaultTrimLength){
 	return function(data, trimLength){
 		trimLength = trimLength || defaultTrimLength;
-		return data.length < trimLength ? data : data.substr(0,trimLength)+'...';
+		return data.length < trimLength ? data : 
+			String.prototype.substr.call(data, 0,trimLength)+'...';
 	}
 });
 

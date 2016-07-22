@@ -8,6 +8,12 @@ angular.module('bugTrackerApp')
 			$scope.bugs = bugs;
 		});
 
+		$scope.helloWorldClick = function(){
+			console.log('[controller] helloWorldClick is recognized');
+		}
+
+		$scope.searchBug = {};
+		
 		$scope.addBug = function(newBugName){
 			bugService
 				.add(newBugName)
