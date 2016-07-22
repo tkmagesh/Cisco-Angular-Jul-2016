@@ -21,24 +21,8 @@
 	<script src="scripts/app/bugTrackerApp/bugTrackerApp.directives.js"></script>
 	<script src="scripts/app/bugTrackerApp/bugTrackerApp.newBugController.js"></script>
 	<script src="scripts/app/bugTrackerApp/bugTrackerApp.newBugDirective.js"></script>
-	<script>
-		angular
-			.module('bugTrackerApp')
-			.config(function($routeProvider){
-				$routeProvider
-					.when('/list', {
-						template : '<bugs></bugs>'
-					})
-					.when('/new', {
-						template : '<new-bug></new-bug>'
-					})
-					.otherwise({
-						redirectTo : '/list'
-					});
-			});
-
-
-	</script>
+	<script src="scripts/app/bugTrackerApp/bugTrackerApp.bugDetails.js"></script>
+	
 </head>
 <body ng-app="bugTrackerApp">
 	

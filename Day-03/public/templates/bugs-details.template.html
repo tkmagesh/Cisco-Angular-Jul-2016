@@ -1,0 +1,20 @@
+<style>
+	.closed{
+		color : red;
+		font-style: italic;
+		font-weight: boldl;
+		text-decoration: line-through;
+	}
+	.open{
+		color : green;
+		font-weight: bold;
+	}
+</style>
+<h3>{{bug.name}}</h3>
+<div>
+	<label for="">Status : </label>
+	<span ng-class="{closed : bug.isClosed, open : !bug.isClosed}">{{bug.isClosed ? 'Closed' : 'Open'}}</span>
+</div>
+<p>{{bug.desc}}</p>
+<div>Created At : <b>{{bug.createdAt | elapsed}}</b></div>
+<div><a href="/#/list">Show All</a></div>

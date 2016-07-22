@@ -1,7 +1,12 @@
 angular.module('bugTrackerApp')
 	.service('bugService', function($http, bugOperations){
 		var baseUrl = 'http://localhost:3000/bugs';
-
+		this.getOne = function(id){
+			return $http.get(baseUrl + '/' + id)
+				.then(function(response){
+					return response.data;
+				});
+		}
 		this.getAll = function(){
 			var httpPromise = $http.get(baseUrl)
 			var resultPromise = httpPromise.then(function(response){

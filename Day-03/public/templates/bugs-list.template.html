@@ -4,9 +4,10 @@
 		<li ng-repeat="bug in (bugs | filter:searchBug | orderBy:sortBug.by:sortBug.descending) ">
 			<span class="bugname" ng-click="toggleBug(bug)" ng-class="{closed : bug.isClosed}">
 				{{bug.name | trimText:40}}</span>
-
-			<input type="button" value="Select" ng-click="setSelectedBug(bug)">
-			<div class="datetime">{{bug.createdAt | elapsed}}</div>
+			<div>
+				<a href="/#/details/{{bug.id}}">Show More</a>	
+			</div>
+			
 		</li>
 	</ol>
 	<input type="button" value="Remove Closed" ng-click="removeClosed()">
