@@ -1,10 +1,10 @@
 angular
 	.module("bugTrackerApp")
-	.factory("bugStorage", function(bugOperations, $window){
+	.service("bugStorage", function(bugOperations, $window){
 		var storage = $window.localStorage;
 		var maxBugId = 0;
 		var subscriptionFns = [];
-		function getAllBugs(){
+		this.getAll = function getAllBugs(){
 			var result = [];
 			for(var i=0; i<storage.length; i++){
 				var bugDataJson = storage.getItem(storage.key(i))
@@ -19,20 +19,20 @@ angular
 			storage.setItem(bug.id, angular.toJson(bug));
 			triggerChange();
 		}
-		function addNew(bugName){
+		this.add = function addNew(bugName){
 			var newBug = bugOperations.create(++maxBugId, bugName);
 			saveBug(newBug);
 			
 		}
-		function toggleBug(bug){
+		this.toggle = function toggleBug(bug){
 			bugOperations.toggle(bug);
 			saveBug(bug);
 		}
-		function removeBug(bug){
+		this.remove = function removeBug(bug){
 			storage.removeItem(bug.id);
 			triggerChange();
 		}
-		function onStorageChange(subscriptionFn){
+		this.onChange = function onStorageChange(subscriptionFn){
 			subscriptionFns.push(subscriptionFn);
 		}
 		function triggerChange(){
@@ -41,11 +41,5 @@ angular
 					subscriptionFn();
 			})
 		}
-		return {
-			getAll : getAllBugs,
-			add : addNew,
-			toggle : toggleBug,
-			remove : removeBug,
-			onChange : onStorageChange
-		}
+		
 	});

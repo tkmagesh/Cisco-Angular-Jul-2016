@@ -31,6 +31,7 @@
 		}
 
 		.bugname{
+			font-size: 17pt;
 			cursor: pointer;
 		}
 		.selected{
@@ -40,6 +41,9 @@
 			margin : 10px;
 			border : 1px solid black;
 			padding: 10px;
+		}
+		.datetime{
+			font-style: italic;
 		}
 
 	</style>
@@ -72,6 +76,7 @@
 		12. Make the bugs accessible using an URL
 		*/
 	</script>
+	<script src="scripts/vendor/moment.js"></script>
 	<script src="scripts/vendor/angular.js"></script>
 	<script src="scripts/app/utils/utils.js"></script>
 
@@ -80,7 +85,8 @@
 	<script src="scripts/app/bugTrackerApp/bugTrackerApp.bugsController.js"></script>
 	<script src="scripts/app/bugTrackerApp/bugTrackerApp.closedCount.js"></script>
 	<script src="scripts/app/bugTrackerApp/bugTrackerApp.defaultBugName.js"></script>
-	<script src="scripts/app/bugTrackerApp/bugTrackerApp.bugStorage.js"></script>
+	<script src="scripts/app/bugTrackerApp/bugTrackerApp.bugStorage-service.js"></script>
+	<!-- <script src="scripts/app/bugTrackerApp/bugTrackerApp.bugStorage-factory.js"></script> -->
 </head>
 <body ng-app="bugTrackerApp">
 	<h1>Bug Tracker</h1>
@@ -119,8 +125,10 @@
 			<ol>
 				<li ng-repeat="bug in (bugs | filter:searchBug | orderBy:sortBugOrder:sortBugDescending) ">
 					<span class="bugname" ng-click="toggleBug(bug)" ng-class="{closed : bug.isClosed}">
-						{{bug.name | trimText}}</span>
+						{{bug.name | trimText:40}}</span>
+
 					<input type="button" value="Select" ng-click="setSelectedBug(bug)">
+					<div class="datetime">{{bug.createdAt | elapsed}}</div>
 				</li>
 			</ol>
 			<input type="button" value="Remove Closed" ng-click="removeClosed()">

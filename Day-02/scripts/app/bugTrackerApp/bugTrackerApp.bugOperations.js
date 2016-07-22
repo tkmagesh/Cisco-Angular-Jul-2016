@@ -5,7 +5,8 @@ angular.module('bugTrackerApp')
 				return {
 					id : id,
 					name : bugName || defaultBugName,
-					isClosed : false
+					isClosed : false,
+					createdAt : new Date(),
 				}
 			},
 			toggle : function(bug){
