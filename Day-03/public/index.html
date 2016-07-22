@@ -17,68 +17,12 @@
 	<script src="scripts/app/bugTrackerApp/bugTrackerApp.bugService.js"></script>
 	<!-- <script src="scripts/app/bugTrackerApp/bugTrackerApp.bugStorage-service.js"></script> -->
 	<!-- <script src="scripts/app/bugTrackerApp/bugTrackerApp.bugStorage-factory.js"></script> -->
-	<script>
-		angular
-			.module("bugTrackerApp")
-			.directive('bugStats', function(){
-				return {
-					templateUrl : '/templates/bugs-stats.template.html',
-					scope : {
-						bugs : '='
-					}
-				}
-			})
-			.directive('bugSearch', function(){
-				return {
-					templateUrl : '/templates/bugs-search.template.html',
-					scope : {
-						searchCriteria : '='
-					}
-				}
-			});
-			
-	</script>
+	<script src="scripts/app/bugTrackerApp/bugTrackerApp.directives.js"></script>
 </head>
 <body ng-app="bugTrackerApp">
 	
 	<h1>Bug Tracker</h1>
 	<hr>
-	<div class="content" ng-controller="bugsController">
-		
-		<bug-stats bugs="bugs"></bug-stats>
-		<bug-search search-criteria="searchBug"></bug-search>
-		
-		
-		<section class="sort">
-			<label for="">Sort By :</label>
-			<!-- <input type="text" ng-model="sortBugOrder"> -->
-			<select ng-model="sortBugOrder">
-				<option value="name">Name</option>
-				<option value="isClosed">Status</option>
-			</select>
-			<label for="">Descending ? :</label>
-			<input type="checkbox" ng-model="sortBugDescending">
-		</section>
-		<section class="edit">
-			<label for="">Bug :</label>
-			<input type="text" ng-model="newBugName">
-			<input type="button" value="Save" ng-click="addBug(newBugName)">
-		</section>
-		<section class="list">
-			<ol>
-				<li ng-repeat="bug in (bugs | filter:searchBug | orderBy:sortBugOrder:sortBugDescending) ">
-					<span class="bugname" ng-click="toggleBug(bug)" ng-class="{closed : bug.isClosed}">
-						{{bug.name | trimText:40}}</span>
-
-					<input type="button" value="Select" ng-click="setSelectedBug(bug)">
-					<div class="datetime">{{bug.createdAt | elapsed}}</div>
-				</li>
-			</ol>
-			<input type="button" value="Remove Closed" ng-click="removeClosed()">
-		</section>
-		<section class="selected">
-			<h3>{{selectedBug.name}}</h3>
-		</section>
-	</div>
+	<bugs></bugs>
 </body>
 </html>

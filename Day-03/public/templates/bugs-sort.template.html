@@ -1,0 +1,11 @@
+<section class="sort">
+			<label for="">Sort By :</label>
+			<!-- <input type="text" ng-model="sortBugOrder"> -->
+			<select ng-model="sortDetails.by">
+				<option value="name">Name</option>
+				<option value="isClosed">Status</option>
+				<option value="createdAt">Created At</option>
+			</select>
+			<label for="">Descending ? :</label>
+			<input type="checkbox" ng-model="sortDetails.descending">
+		</section>

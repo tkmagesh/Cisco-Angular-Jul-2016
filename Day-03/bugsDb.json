@@ -9,13 +9,13 @@
     {
       "id": 5,
       "name": "User experience is poor",
-      "isClosed": false,
+      "isClosed": true,
       "createdAt": "2016-06-08T05:45:36.234Z"
     },
     {
       "id": 7,
       "name": "Json server is not fast",
-      "isClosed": false,
+      "isClosed": true,
       "createdAt": "2016-07-22T06:27:27.636Z"
     },
     {
