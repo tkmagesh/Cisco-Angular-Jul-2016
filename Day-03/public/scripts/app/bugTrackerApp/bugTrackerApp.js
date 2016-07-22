@@ -1,1 +1,1 @@
-angular.module('bugTrackerApp', ['utils']);
+angular.module('bugTrackerApp', ['utils','ngRoute']);

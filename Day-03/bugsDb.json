@@ -9,20 +9,26 @@
     {
       "id": 5,
       "name": "User experience is poor",
-      "isClosed": true,
+      "isClosed": false,
       "createdAt": "2016-06-08T05:45:36.234Z"
     },
     {
       "id": 7,
       "name": "Json server is not fast",
-      "isClosed": true,
+      "isClosed": false,
       "createdAt": "2016-07-22T06:27:27.636Z"
     },
     {
-      "id": 8,
-      "name": 123456778,
+      "id": 10,
+      "name": "Routing is not working",
       "isClosed": false,
-      "createdAt": "2016-07-22T06:50:59.487Z"
+      "createdAt": "2016-07-22T09:38:59.533Z"
+    },
+    {
+      "id": 11,
+      "name": "$location is not working",
+      "isClosed": false,
+      "createdAt": "2016-07-22T09:41:37.779Z"
     }
   ]
 }

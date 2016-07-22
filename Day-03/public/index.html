@@ -7,6 +7,7 @@
 	
 	<script src="scripts/vendor/moment.js"></script>
 	<script src="scripts/vendor/angular.js"></script>
+	<script src="scripts/vendor/angular-route.js"></script>
 	<script src="scripts/app/utils/utils.js"></script>
 
 	<script src="scripts/app/bugTrackerApp/bugTrackerApp.js"></script>
@@ -18,11 +19,32 @@
 	<!-- <script src="scripts/app/bugTrackerApp/bugTrackerApp.bugStorage-service.js"></script> -->
 	<!-- <script src="scripts/app/bugTrackerApp/bugTrackerApp.bugStorage-factory.js"></script> -->
 	<script src="scripts/app/bugTrackerApp/bugTrackerApp.directives.js"></script>
+	<script src="scripts/app/bugTrackerApp/bugTrackerApp.newBugController.js"></script>
+	<script src="scripts/app/bugTrackerApp/bugTrackerApp.newBugDirective.js"></script>
+	<script>
+		angular
+			.module('bugTrackerApp')
+			.config(function($routeProvider){
+				$routeProvider
+					.when('/list', {
+						template : '<bugs></bugs>'
+					})
+					.when('/new', {
+						template : '<new-bug></new-bug>'
+					})
+					.otherwise({
+						redirectTo : '/list'
+					});
+			});
+
+
+	</script>
 </head>
 <body ng-app="bugTrackerApp">
 	
 	<h1>Bug Tracker</h1>
 	<hr>
-	<bugs></bugs>
+	<ng-view></ng-view>
+	
 </body>
 </html>

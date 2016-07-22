@@ -1,28 +1,19 @@
 angular.module('bugTrackerApp')
 	.controller('bugsController', function($scope, bugService){
-		//console.log(bugStorage);
+		
 		$scope.bugs = [];
 
-		var resultPromise = bugService.getAll();
-		resultPromise.then(function(bugs){
-			$scope.bugs = bugs;
-		});
+		bugService
+			.getAll()
+			.then(function(bugs){
+				$scope.bugs = bugs;
+			});
 
-		$scope.helloWorldClick = function(){
-			console.log('[controller] helloWorldClick is recognized');
-		}
-
+		
 		$scope.searchBug = {};
 		$scope.sortBug = {};
 		
-		$scope.addBug = function(newBugName){
-			bugService
-				.add(newBugName)
-				.then(function(newBug){
-					$scope.bugs.push(newBug);
-				})
-			
-		};
+		
 
 		$scope.toggleBug = function(bug){
 			bugService.toggle(bug);
